@@ -1,0 +1,20 @@
+ THERE ARE 2 BACKENDSS
+ 1-> DATABASE
+ 2-> WEBSERVICES EXTERNAL API
+ 
+ When do we call the sequential calls?
+ -> If we want some data from 1 backend but second backend is dependent on first backend then only 2nd backend will give the response
+ 	Ifwe want to communicate with 2 backend system if 1 backend is dependent on another backend then we should go for sequential calls.
+ 	
+ 	Here 1st backend response(O/p) would be 2nd backend(I/p) request.
+ 	If 1st backend down or giving errors then we cannot call 2nd backend.
+ 	Overall response will be error response
+ 	
+ 	If 1st backend success and 2nd backend gives error then depends upon client requirement 
+ 		a. send first backend (partial response) to client and ignore the second backend response.
+ 		b. dont send partial response, send as it is to client.
+ 		
+ =========================================================================================================================================
+ PARALLEL CALLS
+ 
+ 	If we want to connect with more than 1 backend systems and all these systems are not dependent on each other
