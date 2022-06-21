@@ -23,7 +23,7 @@ import com.barclays.exception.BusinessException;
 import com.barclays.exception.SystemException;
 import com.barclays.model.BalanceDaoRequest;
 import com.barclays.model.BalanceDaoResponse;
-import com.barclays.util.ENumBalanceErrorCodes;
+import com.barclays.util.EnumBalanceErrorCodes;
 
 /**
  * @author : bunty
@@ -84,10 +84,10 @@ public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
 //				throw new BusinessException(dbRespCode, dbRespMsg);
 //
 //			} 
-			else if (ENumBalanceErrorCodes.checkErrorCodes(dbRespCode, "data error")) {
+			else if (EnumBalanceErrorCodes.checkErrorCodes(dbRespCode, "data error")) {
 				// Todo: keep some error logs
 				throw new BusinessException(dbRespCode, dbRespMsg);
-			} else if (ENumBalanceErrorCodes.checkErrorCodes(dbRespCode, "system error")) {
+			} else if (EnumBalanceErrorCodes.checkErrorCodes(dbRespCode, "system error")) {
 				// Todo: keep some error logs
 				throw new SystemException(dbRespCode, dbRespMsg);
 			} else {

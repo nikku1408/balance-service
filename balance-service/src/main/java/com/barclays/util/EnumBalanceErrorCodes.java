@@ -16,7 +16,7 @@ package com.barclays.util;
  * @date : Jun 21, 2022
  * 
  */
-public enum ENumBalanceErrorCodes {
+public enum EnumBalanceErrorCodes {
 
 	clientId_100("100", "clientId invalid", "data error"), cardNumber_101("101", "cardNumber invalid", "data error"),
 	cvvNumber_102("102", "cvvNumber invalid", "data error"), expDate_103("103", "expDate invalid", "data error"),
@@ -28,7 +28,7 @@ public enum ENumBalanceErrorCodes {
 	private String errorMsg;
 	private String typeOfError;
 
-	ENumBalanceErrorCodes(String errorCode, String errorMsg, String typeOfError) {
+	EnumBalanceErrorCodes(String errorCode, String errorMsg, String typeOfError) {
 		this.errorCode = errorCode;
 		this.errorMsg = errorMsg;
 		this.typeOfError = typeOfError;
@@ -47,7 +47,7 @@ public enum ENumBalanceErrorCodes {
 	}
 
 	public static boolean checkErrorCodes(String dbRespCode, String errorType) {
-		for (ENumBalanceErrorCodes e : ENumBalanceErrorCodes.values()) {
+		for (EnumBalanceErrorCodes e : EnumBalanceErrorCodes.values()) {
 			if (dbRespCode.equals(e.getErrorCode()) && errorType.equals(e.getTypeOfError())) {
 				return true;
 			}
