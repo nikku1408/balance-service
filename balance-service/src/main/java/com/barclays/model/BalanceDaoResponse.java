@@ -25,6 +25,33 @@ public class BalanceDaoResponse {
 	private String balanceAmount;
 	private String cardLimitAmount;
 	private String unBilledAmount;
+	private String creationDate;
+	private String updateDate;
+	private String availableBalance;
+
+	public String getAvailableBalance() {
+		return availableBalance;
+	}
+
+	public void setAvailableBalance(String availableBalance) {
+		this.availableBalance = availableBalance;
+	}
+
+	public String getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	public String getRespCode() {
 		return respCode;
@@ -68,19 +95,25 @@ public class BalanceDaoResponse {
 
 	@Override
 	public String toString() {
-		StringBuffer buffer = new StringBuffer();
-		buffer.append("BalanceDaoResponse [respCode=");
-		buffer.append(respCode);
-		buffer.append(", respMsg=");
-		buffer.append(respMsg);
-		buffer.append(", balanceAmount=");
-		buffer.append(balanceAmount);
-		buffer.append(", cardLimitAmount=");
-		buffer.append(cardLimitAmount);
-		buffer.append(", unBilledAmount=");
-		buffer.append(unBilledAmount);
-		buffer.append("]");
-		return buffer.toString();
+		StringBuilder builder = new StringBuilder();
+		builder.append("BalanceDaoResponse [respCode=");
+		builder.append(respCode);
+		builder.append(", respMsg=");
+		builder.append(respMsg);
+		builder.append(", balanceAmount=");
+		builder.append(balanceAmount);
+		builder.append(", cardLimitAmount=");
+		builder.append(cardLimitAmount);
+		builder.append(", unBilledAmount=");
+		builder.append(unBilledAmount);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", updateDate=");
+		builder.append(updateDate);
+		builder.append(", availableBalance=");
+		builder.append(availableBalance);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
