@@ -100,7 +100,7 @@ public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
 		} catch (SystemException e) {
 			throw e;
 		} catch (Exception e) {
-			throw new SystemException("111111", "Unknown Error from database");
+			throw new SystemException("696969", "GENERIC_ERROR");
 		}
 		return daoResp;
 	}

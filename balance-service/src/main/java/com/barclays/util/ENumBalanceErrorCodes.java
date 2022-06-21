@@ -17,10 +17,12 @@ package com.barclays.util;
  * 
  */
 public enum ENumBalanceErrorCodes {
-	clientId_100("100", "clientId invalid", "data error"), clientId_101("101", "clientId invalid", "data error"),
-	clientId_102("102", "clientId invalid", "data error"), clientId_103("103", "clientId invalid", "data error"),
-	clientId_104("104", "clientId invalid", "data error"), clientId_111("111", "clientId invalid", "system error"),
-	clientId_222("222", "clientId invalid", "system error"), clientId_333("333", "clientId invalid", "system error");
+
+	clientId_100("100", "clientId invalid", "data error"), cardNumber_101("101", "cardNumber invalid", "data error"),
+	cvvNumber_102("102", "cvvNumber invalid", "data error"), expDate_103("103", "expDate invalid", "data error"),
+	cardNum_WITH_cvv_104("104", "cardNum not mapped with cvv", "data error"),
+	dbConnection_111("111", "unable to connect db", "system error"),
+	syntax_222("222", "database syntax error", "system error"), databaseId_333("333", "database down", "system error");
 
 	private String errorCode;
 	private String errorMsg;
