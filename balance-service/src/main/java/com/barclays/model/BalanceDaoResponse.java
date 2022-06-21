@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 public class BalanceDaoResponse {
 	private String respCode;
 	private String respMsg;
-	private String balanceAmount;
 	private String cardLimitAmount;
 	private String unBilledAmount;
 	private String creationDate;
@@ -45,14 +44,6 @@ public class BalanceDaoResponse {
 		this.creationDate = creationDate;
 	}
 
-	public String getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
-	}
-
 	public String getRespCode() {
 		return respCode;
 	}
@@ -67,14 +58,6 @@ public class BalanceDaoResponse {
 
 	public void setRespMsg(String respMsg) {
 		this.respMsg = respMsg;
-	}
-
-	public String getBalanceAmount() {
-		return balanceAmount;
-	}
-
-	public void setBalanceAmount(String balanceAmount) {
-		this.balanceAmount = balanceAmount;
 	}
 
 	public String getCardLimitAmount() {
@@ -93,6 +76,14 @@ public class BalanceDaoResponse {
 		this.unBilledAmount = unBilledAmount;
 	}
 
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -100,8 +91,6 @@ public class BalanceDaoResponse {
 		builder.append(respCode);
 		builder.append(", respMsg=");
 		builder.append(respMsg);
-		builder.append(", balanceAmount=");
-		builder.append(balanceAmount);
 		builder.append(", cardLimitAmount=");
 		builder.append(cardLimitAmount);
 		builder.append(", unBilledAmount=");

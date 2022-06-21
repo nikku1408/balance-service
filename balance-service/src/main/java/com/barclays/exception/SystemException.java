@@ -44,11 +44,12 @@ public class SystemException extends Exception {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("BusinessException [errorCode=");
+		builder.append("SystemException [errorCode=");
 		builder.append(errorCode);
 		builder.append(", errorMsg=");
 		builder.append(errorMsg);
 		builder.append("]");
 		return builder.toString();
 	}
+
 }

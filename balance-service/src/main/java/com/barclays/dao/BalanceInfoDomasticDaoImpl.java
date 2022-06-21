@@ -75,7 +75,7 @@ public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
 					daoResp.setUnBilledAmount(rs.getString("unbilled_amount"));
 					daoResp.setAvailableBalance(rs.getString("available_balance"));
 					daoResp.setCreationDate(rs.getString("creation_date"));
-					daoResp.setUpdateDate("updated_date");
+					daoResp.setUpdateDate(rs.getString("updated_date"));
 				}
 			}
 //			} else if ("100".equals(dbRespCode) || "101".equals(dbRespCode) || "102".equals(dbRespCode)
