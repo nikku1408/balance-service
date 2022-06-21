@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.barclays.exception.BusinessException;
+import com.barclays.exception.SystemException;
 import com.barclays.model.BalanceRequest;
 import com.barclays.model.BalanceResponse;
 import com.barclays.service.BalanceService;
@@ -35,7 +37,7 @@ public class BalanceInfoController {
 	private BalanceService balanceService;
 
 	@RequestMapping(path = "/balance", method = RequestMethod.GET, produces = "application/json")
-	public BalanceResponse getBalance(BalanceRequest balanceRequest) {
+	public BalanceResponse getBalance(BalanceRequest balanceRequest) throws BusinessException, SystemException {
 
 		// validate the request
 		balanceRequestValidator.validateRequest(balanceRequest);

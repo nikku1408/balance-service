@@ -11,6 +11,8 @@
 
 package com.barclays.service;
 
+import com.barclays.exception.BusinessException;
+import com.barclays.exception.SystemException;
 import com.barclays.model.BalanceRequest;
 import com.barclays.model.BalanceResponse;
 
@@ -20,5 +22,5 @@ import com.barclays.model.BalanceResponse;
  * 
  */
 public interface BalanceService {
-	BalanceResponse getBalance(BalanceRequest balanceRequest);
+	BalanceResponse getBalance(BalanceRequest balanceRequest) throws BusinessException, SystemException;
 }

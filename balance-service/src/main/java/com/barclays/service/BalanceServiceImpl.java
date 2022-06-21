@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.barclays.dao.BalanceInfoDao;
+import com.barclays.exception.BusinessException;
+import com.barclays.exception.SystemException;
 import com.barclays.model.BalanceDaoRequest;
 import com.barclays.model.BalanceDaoResponse;
 import com.barclays.model.BalanceRequest;
@@ -40,7 +42,7 @@ public class BalanceServiceImpl implements BalanceService {
 	@Autowired
 	private CardVerifySvcClient cardVerifySvcClient;
 
-	public BalanceResponse getBalance(BalanceRequest balanceRequest) {
+	public BalanceResponse getBalance(BalanceRequest balanceRequest) throws BusinessException, SystemException {
 		// get the request from controller
 
 		// prepare the request for cardVerifyService
@@ -52,7 +54,6 @@ public class BalanceServiceImpl implements BalanceService {
 
 		// if the card is domestic call domesticDao and vice versa
 
-		//
 		BalanceDaoRequest balanceDaoRequest = new BalanceDaoRequest();
 		BalanceDaoResponse balanceDaoResponse = domesticDao.getBalance(balanceDaoRequest);
 		BalanceDaoResponse balanceDaoResponse2 = internationalDao.getBalance(balanceDaoRequest);

@@ -13,6 +13,8 @@ package com.barclays.dao;
 
 import org.springframework.stereotype.Component;
 
+import com.barclays.exception.BusinessException;
+import com.barclays.exception.SystemException;
 import com.barclays.model.BalanceDaoRequest;
 import com.barclays.model.BalanceDaoResponse;
 
@@ -23,5 +25,5 @@ import com.barclays.model.BalanceDaoResponse;
  */
 @Component
 public interface BalanceInfoDao {
-	BalanceDaoResponse getBalance(BalanceDaoRequest balanceDaoRequest);
+	BalanceDaoResponse getBalance(BalanceDaoRequest balanceDaoRequest) throws BusinessException, SystemException;
 }

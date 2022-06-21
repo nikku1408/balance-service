@@ -15,13 +15,15 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Types;
 
 import org.springframework.stereotype.Component;
 
+import com.barclays.exception.BusinessException;
+import com.barclays.exception.SystemException;
 import com.barclays.model.BalanceDaoRequest;
 import com.barclays.model.BalanceDaoResponse;
+import com.barclays.util.ENumBalanceErrorCodes;
 
 /**
  * @author : bunty
@@ -31,7 +33,8 @@ import com.barclays.model.BalanceDaoResponse;
 @Component
 public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
 
-	public BalanceDaoResponse getBalance(BalanceDaoRequest balanceDaoRequest) {
+	public BalanceDaoResponse getBalance(BalanceDaoRequest balanceDaoRequest)
+			throws BusinessException, SystemException {
 
 		BalanceDaoResponse daoResp = null;
 		try {
@@ -74,23 +77,35 @@ public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
 					daoResp.setCreationDate(rs.getString("creation_date"));
 					daoResp.setUpdateDate("updated_date");
 				}
-			} else if ("100".equals(dbRespCode) || "101".equals(dbRespCode) || "102".equals(dbRespCode)
-					|| "103".equals(dbRespCode)) {
-				// Todo: throw user defined exception as Business exception
-
+			}
+//			} else if ("100".equals(dbRespCode) || "101".equals(dbRespCode) || "102".equals(dbRespCode)
+//					|| "103".equals(dbRespCode)) {
+//				// Todo: keep some error logs
+//				throw new BusinessException(dbRespCode, dbRespMsg);
+//
+//			} 
+			else if (ENumBalanceErrorCodes.checkErrorCodes(dbRespCode, "data error")) {
+				// Todo: keep some error logs
+				throw new BusinessException(dbRespCode, dbRespMsg);
+			} else if (ENumBalanceErrorCodes.checkErrorCodes(dbRespCode, "system error")) {
+				// Todo: keep some error logs
+				throw new SystemException(dbRespCode, dbRespMsg);
 			} else {
-				// Todo: throw user defined exception as System exception
+				// Todo: keep some error logs
+				throw new SystemException(dbRespCode, dbRespMsg);
 			}
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (BusinessException e) {
+			throw e;
+		} catch (SystemException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new SystemException("111111", "Unknown Error from database");
 		}
 		return daoResp;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws BusinessException, SystemException {
 		BalanceInfoDao balanceInfoDao = new BalanceInfoDomasticDaoImpl();
 		BalanceDaoRequest balanceDaoRequest = new BalanceDaoRequest();
 		balanceDaoRequest.setCardNum("11401503405222");
