@@ -31,7 +31,7 @@ import com.barclays.util.EnumBalanceErrorCodes;
  * 
  */
 @Component
-public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
+public class BalanceInfoDomasticDaoImplJdbcPoc implements BalanceInfoDao {
 
 	public BalanceDaoResponse getBalance(BalanceDaoRequest balanceDaoRequest)
 			throws BusinessException, SystemException {
@@ -106,7 +106,7 @@ public class BalanceInfoDomasticDaoImpl implements BalanceInfoDao {
 	}
 
 	public static void main(String[] args) throws BusinessException, SystemException {
-		BalanceInfoDao balanceInfoDao = new BalanceInfoDomasticDaoImpl();
+		BalanceInfoDao balanceInfoDao = new BalanceInfoDomasticDaoImplJdbcPoc();
 		BalanceDaoRequest balanceDaoRequest = new BalanceDaoRequest();
 		balanceDaoRequest.setCardNum("11401503405222");
 		balanceDaoRequest.setClientId("12345");
