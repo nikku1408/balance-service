@@ -1,5 +1,5 @@
 /**
- * @Author : bunty
+  * @Author : bunty
  * Copyright (C) 2022 Bunty - All Rights Reserved
  * You may use, distribute and modify this code under the
  * terms of My license, which unfortunately won't be
@@ -18,11 +18,8 @@ import org.springframework.stereotype.Component;
 import com.barclays.dao.BalanceInfoDao;
 import com.barclays.exception.BusinessException;
 import com.barclays.exception.SystemException;
-import com.barclays.model.BalanceDaoRequest;
-import com.barclays.model.BalanceDaoResponse;
 import com.barclays.model.BalanceRequest;
 import com.barclays.model.BalanceResponse;
-import com.barclays.model.CardVerifyRequest;
 import com.barclays.svcclient.CardVerifySvcClient;
 
 /**
@@ -43,20 +40,20 @@ public class BalanceServiceImpl implements BalanceService {
 	private CardVerifySvcClient cardVerifySvcClient;
 
 	public BalanceResponse getBalance(BalanceRequest balanceRequest) throws BusinessException, SystemException {
-		// get the request from controller
-
-		// prepare the request for cardVerifyService
-
-		CardVerifyRequest cardVerifyRequest = new CardVerifyRequest();
-		// call card verify service
-		cardVerifySvcClient.cardVerify(cardVerifyRequest);
-		// identify card is domestic or international
-
-		// if the card is domestic call domesticDao and vice versa
-
-		BalanceDaoRequest balanceDaoRequest = new BalanceDaoRequest();
-		BalanceDaoResponse balanceDaoResponse = domesticDao.getBalance(balanceDaoRequest);
-		BalanceDaoResponse balanceDaoResponse2 = internationalDao.getBalance(balanceDaoRequest);
+		/*
+		 * Get the request from the controller
+		 * 
+		 * Identify the card number whether domestic or international use FinanceService
+		 * 
+		 * Call the card to verify service to validate the card number i.e if the card
+		 * number is active or blocked or card number mapped with cvv
+		 * 
+		 * Based on card type it will route the request to the domestic or international
+		 * backend
+		 * 
+		 * Get the response from backend systems and send data to the client or
+		 * consumer.
+		 */
 		return null;
 	}
 
