@@ -25,6 +25,7 @@ import com.barclays.model.CardVerifyResponse;
 public class CardVerifySvcClientImpl implements CardVerifySvcClient {
 
 	public CardVerifyResponse cardVerify(CardVerifyRequest cardVerifyRequest) {
+		// TODO: Invoke or call card verify service to validate the card number
 		return null;
 	}
 

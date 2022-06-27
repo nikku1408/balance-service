@@ -8,14 +8,25 @@
  * You should have received a copy of the My license with
  * this file. If not, please write to: nikhilninawe.in1@gmail.com.
  */
- 
+
 package com.barclays.svcclient;
+
+import org.springframework.stereotype.Component;
+
+import com.barclays.model.FinanceRequest;
+import com.barclays.model.FinanceResponse;
 
 /**
  * @author : bunty
-	@date : Jun 27, 2022
- *	
+ * @date : Jun 27, 2022
+ * 
  */
-public class FInancialServiceCLientImpl implements FinancialServiceClient {
+@Component
+public class FinancialServiceClientImpl implements FinancialServiceClient {
+
+	public FinanceResponse getRegionDetails(FinanceRequest financeRequest) {
+		// TODO: Invoke the finance service to get the type of card
+		return null;
+	}
 
 }

@@ -11,11 +11,14 @@
 
 package com.barclays.svcclient;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author : bunty
  * @date : Jun 13, 2022
  * 
  */
+@Component
 public class AuthServiceClientImpl implements AuthServiceClient {
 
 }
