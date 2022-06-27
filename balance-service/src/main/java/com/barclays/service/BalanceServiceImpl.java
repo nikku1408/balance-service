@@ -47,7 +47,7 @@ public class BalanceServiceImpl implements BalanceService {
 	private FinancialServiceClient financialServiceClient;
 
 	public BalanceResponse getBalance(BalanceRequest balanceRequest) throws BusinessException, SystemException {
-
+		BalanceResponse balanceResponse = new BalanceResponse();
 		// Get the request from the controller
 
 		// Identify the card number whether domestic or international use FinanceService
@@ -71,14 +71,18 @@ public class BalanceServiceImpl implements BalanceService {
 		// backend
 		if ("0".equals(cardVerifyResponse.getResponseCode()) && "active".equals(cardVerifyResponse.getStatus())) {
 			if ("domestic".equals(financeResponse.getCardType())) {
-
+				// get the instance of DomesticDao Implementation
+				// call DomesticDao
+			} else if ("Intl".equals(financeResponse.getCardType())) {
+				// get the instance of InternationalDao Implementation
+				// call InternationalDao
 			}
 		}
 
 		// Get the response from backend systems and send data to the client or
 		// consumer.
 
-		return null;
+		return balanceResponse;
 	}
 
 }
