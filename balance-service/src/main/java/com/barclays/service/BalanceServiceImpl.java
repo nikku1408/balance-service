@@ -12,12 +12,13 @@
 package com.barclays.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.barclays.dao.BalanceInfoDao;
 import com.barclays.exception.BusinessException;
 import com.barclays.exception.SystemException;
+import com.barclays.model.BalanceDaoRequest;
+import com.barclays.model.BalanceDaoResponse;
 import com.barclays.model.BalanceRequest;
 import com.barclays.model.BalanceResponse;
 import com.barclays.model.CardVerifyRequest;
@@ -35,12 +36,14 @@ import com.barclays.svcclient.FinancialServiceClient;
 @Component
 public class BalanceServiceImpl implements BalanceService {
 
+//	@Autowired
+//	@Qualifier("balanceInfoDomasticDaoImpl")
+//	private BalanceInfoDao domesticDao;
+//	@Autowired
+//	@Qualifier("balanceInfoInternationslDaoImpl")
+//	private BalanceInfoDao internationalDao;
 	@Autowired
-	@Qualifier("balanceInfoDomasticDaoImpl")
-	private BalanceInfoDao domesticDao;
-	@Autowired
-	@Qualifier("balanceInfoInternationslDaoImpl")
-	private BalanceInfoDao internationalDao;
+	private BalanceInfoDao balanceInfoDao;
 	@Autowired
 	private CardVerifySvcClient cardVerifySvcClient;
 	@Autowired
@@ -70,9 +73,23 @@ public class BalanceServiceImpl implements BalanceService {
 		// Based on card type it will route the request to the domestic or international
 		// backend
 		if ("0".equals(cardVerifyResponse.getResponseCode()) && "active".equals(cardVerifyResponse.getStatus())) {
+
+			BalanceDaoRequest balanceDaoRequest = new BalanceDaoRequest();
+
+			balanceDaoRequest.setCardNum(balanceRequest.getCustomerDetails().getCardNum());
+			balanceDaoRequest.setClientId(balanceRequest.getClientDetails().getClientId());
+			balanceDaoRequest.setCvvNum(balanceRequest.getCustomerDetails().getCvvNum());
+			balanceDaoRequest.setExpDate(balanceRequest.getCustomerDetails().getExpDate());
+			balanceDaoRequest.setRequestId(balanceRequest.getClientDetails().getRequestId());
+			balanceDaoRequest.setNameOnCard(balanceRequest.getCustomerDetails().getNameOnCard());
+
+			BalanceDaoResponse balanceDaoResponse = null;
+
 			if ("domestic".equals(financeResponse.getCardType())) {
 				// get the instance of DomesticDao Implementation
 				// call DomesticDao
+				balanceDaoResponse = balanceInfoDao.getBalance(null);
+
 			} else if ("Intl".equals(financeResponse.getCardType())) {
 				// get the instance of InternationalDao Implementation
 				// call InternationalDao

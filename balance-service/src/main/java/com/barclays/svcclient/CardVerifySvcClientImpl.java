@@ -26,7 +26,11 @@ public class CardVerifySvcClientImpl implements CardVerifySvcClient {
 
 	public CardVerifyResponse cardVerify(CardVerifyRequest cardVerifyRequest) {
 		// TODO: Invoke or call card verify service to validate the card number
-		return null;
+		CardVerifyResponse cardVerifyResponse = new CardVerifyResponse();
+		cardVerifyResponse.setResponseCode("0");
+		cardVerifyResponse.setResponseMsg("Success");
+		cardVerifyResponse.setStatus("Active");
+		return cardVerifyResponse;
 	}
 
 }

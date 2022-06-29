@@ -22,7 +22,23 @@ import com.barclays.model.BalanceRequest;
  */
 @Component
 public class BalanceRequestValidator {
-	public void validateRequest(BalanceRequest balanceRequest) {
+	public void validateRequest(BalanceRequest balanceRequest) throws BalanceRequestInvalidException {
 		// TODO: Validations?
+		if (balanceRequest == null || balanceRequest.getClientDetails() == null
+				|| balanceRequest.getCustomerDetails() == null) {
+			throw new BalanceRequestInvalidException("bal001", "request object null!..");
+		}
+
+		String cardNumber = balanceRequest.getCustomerDetails().getCardNum();
+		if (cardNumber == null || " ".equals(cardNumber) || cardNumber.length() != 15) {
+			throw new BalanceRequestInvalidException("bal002", "client id is invalid!..");
+		}
+
+		String cvvNumber = balanceRequest.getCustomerDetails().getCvvNum();
+		if (cvvNumber == null || " ".equals(cvvNumber) || cvvNumber.length() != 15) {
+			throw new BalanceRequestInvalidException("bal003", "cvv is invalid!..");
+		}
+
+		// TODO: need to write validations all the mandatory elements
 	}
 }

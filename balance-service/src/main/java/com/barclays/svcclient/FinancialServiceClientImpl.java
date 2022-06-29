@@ -26,7 +26,11 @@ public class FinancialServiceClientImpl implements FinancialServiceClient {
 
 	public FinanceResponse getRegionDetails(FinanceRequest financeRequest) {
 		// TODO: Invoke the finance service to get the type of card
-		return null;
+		FinanceResponse financeResponse = new FinanceResponse();
+		financeResponse.setResponseCode("0");
+		financeResponse.setResponseMsg("Success");
+		financeResponse.setCardType("Domestic");
+		return financeResponse;
 	}
 
 }

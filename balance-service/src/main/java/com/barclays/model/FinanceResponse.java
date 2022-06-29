@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
  * @author : bunty
  * @date : Jun 27, 2022
  * 
+ * @Description: This service class will give the information of cardtype
+ *               domestic/intl
  */
 @Component
 public class FinanceResponse {
